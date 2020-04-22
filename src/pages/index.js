@@ -1,6 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
-
+import Weather from "../components/weather"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -13,6 +12,7 @@ const IndexPage = () => (
       on the surface of Mars at Elysium Planitia, a flat, smooth plain near
       Mars’ equator.
     </p>
+    <Weather />
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}></div>
   </Layout>
 )
