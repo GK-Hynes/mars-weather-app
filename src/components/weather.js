@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { format } from "date-fns"
+
+import "./weather.css"
 
 export default function Weather() {
-  const [data, setData] = useState({ sols: [] })
-  const [currentWeather, setCurrentWeather] = useState({})
+  const [recentSols, setRecentSols] = useState({ sols: [] })
+  const [latestSol, setLatestSol] = useState({})
   useEffect(() => {
     const fetchWeather = async () => {
       const result = await axios(
@@ -17,25 +20,41 @@ export default function Weather() {
           sol: sol,
           maxTemp: data.AT.mx,
           minTemp: data.AT.mn,
-          date: new Date(data.First_UTC),
+          windSpeed: data.HWS.av,
+          windDirection: data.WD.most_common.compass_point,
+          date: format(new Date(data.First_UTC), "d MMMM"),
         }
       })
-
-      console.log(sols)
-      setData(sols)
-      setCurrentWeather(sols[sols.length - 1])
+      setRecentSols(sols)
+      setLatestSol(sols[sols.length - 1])
     }
     fetchWeather()
   }, [])
 
-  // console.log(data)
-
   return (
-    <div>
-      <div className="currentWeather">
-        <div>Sol {currentWeather.sol}</div>
-        <div>High: {currentWeather.maxTemp}° C</div>
-        <div>Low: {currentWeather.minTemp}° C</div>
+    <div className="Weather">
+      <div className="latestSol">
+        <h3>Sol {latestSol.sol}</h3>
+        <div>High: {latestSol.maxTemp}° C</div>
+        <div>Low: {latestSol.minTemp}° C</div>
+        <div>Windspeed: {Math.round(latestSol.windSpeed * 3.6)} kmph</div>
+        <div>Wind direction: {latestSol.windDirection}</div>
+        <div>{latestSol.date}</div>
+      </div>
+      <div className="recentSols">
+        {recentSols.length > 0 &&
+          recentSols.map(sol => {
+            return (
+              <div className="WeatherCard">
+                <h4>Sol {sol.sol}</h4>
+                <div>High: {sol.maxTemp}° C</div>
+                <div>Low: {sol.minTemp}° C</div>
+                <div>Windspeed: {Math.round(sol.windSpeed * 3.6)} kmph</div>
+                <div>Wind direction: {sol.windDirection}</div>
+                <div>{sol.date}</div>
+              </div>
+            )
+          })}
       </div>
     </div>
   )

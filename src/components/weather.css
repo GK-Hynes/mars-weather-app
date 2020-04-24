@@ -1,0 +1,19 @@
+.latestSol {
+  display: flex;
+}
+
+.latestSol > * {
+  margin: 0.5rem;
+}
+
+.recentSols {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.WeatherCard {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+}
