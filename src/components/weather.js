@@ -18,8 +18,8 @@ export default function Weather() {
       const sols = Object.entries(solData).map(([sol, data]) => {
         return {
           sol: sol,
-          maxTemp: data.AT.mx,
-          minTemp: data.AT.mn,
+          maxTemp: data.AT.mx.toFixed(2),
+          minTemp: data.AT.mn.toFixed(2),
           windSpeed: data.HWS.av,
           windDirection: data.WD.most_common.compass_point,
           date: format(new Date(data.First_UTC), "d MMMM"),
@@ -34,12 +34,22 @@ export default function Weather() {
   return (
     <div className="Weather">
       <div className="latestSol">
-        <h3>Sol {latestSol.sol}</h3>
-        <div>High: {latestSol.maxTemp}° C</div>
-        <div>Low: {latestSol.minTemp}° C</div>
-        <div>Windspeed: {Math.round(latestSol.windSpeed * 3.6)} kmph</div>
-        <div>Wind direction: {latestSol.windDirection}</div>
-        <div>{latestSol.date}</div>
+        <div>
+          <h3 className="sol-number">Sol {latestSol.sol}</h3>
+          <div className="sol-date">{latestSol.date}</div>
+        </div>
+        <div>
+          <div className="sol-max-temp">High: {latestSol.maxTemp}° C</div>
+          <div className="sol-min-temp">Low: {latestSol.minTemp}° C</div>
+        </div>
+        <div>
+          <div className="sol-windspeed">
+            Windspeed: {Math.round(latestSol.windSpeed * 3.6)} kmph
+          </div>
+          <div className="sol-wind-direction">
+            Wind direction: {latestSol.windDirection}
+          </div>
+        </div>
       </div>
       <div className="recentSols">
         {recentSols.length > 0 &&
@@ -47,11 +57,12 @@ export default function Weather() {
             return (
               <div className="WeatherCard">
                 <h4>Sol {sol.sol}</h4>
+                <div>{sol.date}</div>
+                <div className="line"></div>
                 <div>High: {sol.maxTemp}° C</div>
                 <div>Low: {sol.minTemp}° C</div>
                 <div>Windspeed: {Math.round(sol.windSpeed * 3.6)} kmph</div>
                 <div>Wind direction: {sol.windDirection}</div>
-                <div>{sol.date}</div>
               </div>
             )
           })}

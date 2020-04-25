@@ -38,9 +38,12 @@ const Layout = ({ children }) => {
         <main>{children}</main>
       </div>
       <footer style={{ textAlign: `center` }}>
-        © {new Date().getFullYear()}, Built with
+        Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
+        {` `}
+        by{` `}
+        <a href="https://github.com/GK-Hynes">Ger Hynes</a>
       </footer>
     </>
   )

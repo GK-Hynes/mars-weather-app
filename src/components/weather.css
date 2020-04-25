@@ -1,5 +1,6 @@
 .latestSol {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .latestSol > * {
@@ -11,9 +12,30 @@
   flex-wrap: wrap;
 }
 
+.sol-number {
+  font-size: 1.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.sol-date,
+.sol-max-temp,
+.sol-min-temp,
+.sol-windspeed,
+.sol-wind-direction {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .WeatherCard {
   padding: 1rem;
   margin: 1rem;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
+}
+
+.line {
+  width: 80%;
+  background-color: #fff;
+  height: 1px;
+  margin: 0.5rem 0;
 }
