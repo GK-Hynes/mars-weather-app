@@ -1,4 +1,5 @@
 import React from "react"
+import "./latestSol.css"
 
 export default function LatestSol({
   sol,

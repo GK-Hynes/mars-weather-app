@@ -1,4 +1,5 @@
 import React from "react"
+import "./weatherCard.css"
 
 export default function WeatherCard({
   sol,
