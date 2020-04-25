@@ -34,15 +34,15 @@ export default function Weather() {
   return (
     <div className="Weather">
       <div className="latestSol">
-        <div>
+        <div className="sol-detail-wrapper">
           <h3 className="sol-number">Sol {latestSol.sol}</h3>
           <div className="sol-date">{latestSol.date}</div>
         </div>
-        <div>
+        <div className="sol-detail-wrapper">
           <div className="sol-max-temp">High: {latestSol.maxTemp}° C</div>
           <div className="sol-min-temp">Low: {latestSol.minTemp}° C</div>
         </div>
-        <div>
+        <div className="sol-detail-wrapper">
           <div className="sol-windspeed">
             Windspeed: {Math.round(latestSol.windSpeed * 3.6)} kmph
           </div>
