@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { format } from "date-fns"
-
+import LatestSol from "./latestSol"
+import WeatherCard from "./weatherCard"
 import "./weather.css"
 
 export default function Weather() {
@@ -20,7 +21,7 @@ export default function Weather() {
           sol: sol,
           maxTemp: data.AT.mx.toFixed(2),
           minTemp: data.AT.mn.toFixed(2),
-          windSpeed: data.HWS.av,
+          windspeed: Math.round(data.HWS.av * 3.6),
           windDirection: data.WD.most_common.compass_point,
           date: format(new Date(data.First_UTC), "d MMMM"),
         }
@@ -33,37 +34,26 @@ export default function Weather() {
 
   return (
     <div className="Weather">
-      <div className="latestSol">
-        <div className="sol-detail-wrapper">
-          <h3 className="sol-number">Sol {latestSol.sol}</h3>
-          <div className="sol-date">{latestSol.date}</div>
-        </div>
-        <div className="sol-detail-wrapper">
-          <div className="sol-max-temp">High: {latestSol.maxTemp}° C</div>
-          <div className="sol-min-temp">Low: {latestSol.minTemp}° C</div>
-        </div>
-        <div className="sol-detail-wrapper">
-          <div className="sol-windspeed">
-            Windspeed: {Math.round(latestSol.windSpeed * 3.6)} kmph
-          </div>
-          <div className="sol-wind-direction">
-            Wind direction: {latestSol.windDirection}
-          </div>
-        </div>
-      </div>
+      <LatestSol
+        sol={latestSol.sol}
+        date={latestSol.date}
+        maxTemp={latestSol.maxTemp}
+        minTemp={latestSol.minTemp}
+        windspeed={latestSol.windspeed}
+        windDirection={latestSol.windDirection}
+      />
       <div className="recentSols">
         {recentSols.length > 0 &&
           recentSols.map(sol => {
             return (
-              <div className="WeatherCard">
-                <h4>Sol {sol.sol}</h4>
-                <div>{sol.date}</div>
-                <div className="line"></div>
-                <div>High: {sol.maxTemp}° C</div>
-                <div>Low: {sol.minTemp}° C</div>
-                <div>Windspeed: {Math.round(sol.windSpeed * 3.6)} kmph</div>
-                <div>Wind direction: {sol.windDirection}</div>
-              </div>
+              <WeatherCard
+                sol={sol.sol}
+                date={sol.date}
+                maxTemp={sol.maxTemp}
+                minTemp={sol.minTemp}
+                windspeed={sol.windspeed}
+                windDirection={sol.windDirection}
+              />
             )
           })}
       </div>
