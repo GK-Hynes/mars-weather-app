@@ -18,8 +18,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `mars-weather-app`,
-        short_name: `mars-weather`,
+        name: `Mars Weather App`,
+        short_name: `Mars Weather`,
         start_url: `/`,
         background_color: `#822118`,
         theme_color: `#822118`,
