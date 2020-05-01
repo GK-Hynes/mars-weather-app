@@ -1,6 +1,6 @@
 # Mars Weather
 
-An Gatsby app to display the weather on Mars using Nasa's [InSight Mars Weather Service API](https://api.nasa.gov/).
+A Gatsby app to display the weather on Mars using Nasa's [InSight Mars Weather Service API](https://api.nasa.gov/).
 
 [Try out the site live](https://weather-on-mars.netlify.app/).
 
